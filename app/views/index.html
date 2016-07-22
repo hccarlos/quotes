@@ -1,8 +1,38 @@
 <html>
   <head>
+  	<title>Registration Form</title>
     <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
   </head>
   <body>
-    The best place to start is the "WelcomeController.py" file in app/controllers.
+    <h3>Register</h3>
+	<form action="/registration" method="POST">
+		Email <input type="text" name="email">
+		First Name <input type="text" name="name">
+		Alias <input type="text" name="alias">
+		Password <input type="text" name="password">
+		Confirm Password <input type="text" name="confirm_password">
+		Birthday <input type="text" name="birthday">
+		<input type="submit" name="Submit">
+
+
+
+
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<p>{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith%}
+
+	</form>
+	<hr>
+	<h3>Already a user? Login</h3>
+		<form action='/login_validation' method='POST'>
+			email: <input type='text' name='email'>
+			password: <input type='text' name='password'>
+			<input type='submit' value='login'>
+		</form>
   </body>
 </html>

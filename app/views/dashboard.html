@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{message}}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith%}
+	<a href="/quotes/logout">Logout</a>
+	<h5>Hello {{user['name']}}, GLaDOS welcomes you!</h5>
+	<p>We are serving cakes</p>
+	<p>{{session['id']}}</p>
+	<hr>
+	<hr>
+	<p>Add Quote</p>
+		<form action="/add_quote" method="POST">
+			Quoted By: <input type="text" name="author">
+			Message: <input type="text" name="message">
+			<input type="submit" name="Submit">
+		</form>
+	<hr>
+	<h3>All Quotes</h3>
+	{% for quotes in all_quotes%}
+		<p>{{quotes['author']}}:</p>
+		<p>{{quotes['message']}}:</p>
+		<a href="/all_quotes_by_user/{{quotes['posterID']}}"><p>Posted by {{quotes['name']}}</p></a>
+		<a href="/add_to_favorites/{{quotes['quoteID']}}">Add to Favorites</a>
+		<hr>
+	{% endfor %}
+	<hr>
+	<hr>
+	<hr>
+	<h3>Favorite Quotes</h3>
+	{% for Fquotes in favorite_quotes%}
+		<p>{{Fquotes['author']}}:</p>
+		<p>{{Fquotes['message']}}:</p>
+		<a href="/all_quotes_by_user/{{Fquotes['posterID']}}"><p>Posted by {{Fquotes['name']}}</p></a>
+		<a href="/remove_from_favorites/{{Fquotes['quoteID']}}">Remove from Favorites</a>
+		<hr>
+	{% endfor %}
+</body>
+</html>

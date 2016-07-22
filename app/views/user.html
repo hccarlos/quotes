@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<p><a href="/quotes">Dashboard</a></p>
+	<p><a href="/quotes/logout">Logout</a></p>
+	<hr>
+	<hr>
+	<h5>Quotes by {{user['name']}}</h5>
+	{% for quotes in allQuotes%}
+		<p>{{quotes['author']}}:</p>
+		<p>{{quotes['message']}}:</p>
+		<hr>
+	{% endfor %}
+</body>
+</html>
